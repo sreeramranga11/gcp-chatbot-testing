@@ -4,13 +4,14 @@ resource "google_sql_database_instance" "default" {
   region           = var.region
 
   settings {
-    tier = "db-f1-micro"
+    tier = "db-custom-1-3840-1"
     ip_configuration {
       ipv4_enabled    = true
       require_ssl     = false
     }
   }
 }
+
 
 resource "google_sql_user" "users" {
   name     = var.db_user
