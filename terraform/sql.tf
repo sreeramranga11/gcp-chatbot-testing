@@ -4,11 +4,16 @@ resource "google_sql_database_instance" "default" {
   region           = var.region
 
   settings {
-    tier = "db-f1-micro"
+    tier = "db-custom-1-3840"
+    disk_size = 10
+    disk_type = "SSD"
     ip_configuration {
       ipv4_enabled    = true
       require_ssl     = false
     }
+  }
+}
+
   }
 }
 
