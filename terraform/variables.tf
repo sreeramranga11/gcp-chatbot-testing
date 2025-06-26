@@ -43,4 +43,10 @@ variable "bucket_name" {
   description = "Name of the GCS bucket"
   type        = string
   default     = "main-storage-bucket"
-} 
+}
+
+variable "db_instance_name" {
+  description = "Name of the Cloud SQL instance"
+  type        = string
+  default     = "main-sql-instance-large"
+}

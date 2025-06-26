@@ -15,7 +15,7 @@ resource "google_container_node_pool" "primary_nodes" {
   cluster    = google_container_cluster.primary.name
   location   = var.region
 
-  node_count = 2
+  node_count = 5
 
   node_config {
     machine_type = "e2-medium"
@@ -23,4 +23,5 @@ resource "google_container_node_pool" "primary_nodes" {
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
-} 
+}
+ 
