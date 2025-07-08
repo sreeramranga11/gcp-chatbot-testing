@@ -6,7 +6,7 @@ module "bucket" {
   project_id                  = each.value.project_id
   location                    = each.value.location
   storage_class               = each.value.storage_class
-  labels                      = merge(each.value.labels, { environment = each.value.environment })
+  labels                      = each.value.labels
   public_access_prevention    = each.value.public_access_prevention
   uniform_bucket_level_access = each.value.uniform_bucket_level_access
   versioning                  = each.value.versioning
@@ -16,6 +16,7 @@ module "bucket" {
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
