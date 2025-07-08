@@ -6,7 +6,7 @@ module "bucket" {
   project_id                  = each.value.project_id
   location                    = each.value.location
   storage_class               = each.value.storage_class
-  labels                      = merge(each.value.labels, { environment = each.value.environment })
+  labels                      = merge(each.value.labels, { environment = each.value.environment, deployment_tier = each.value.deployment_tier })
   public_access_prevention    = each.value.public_access_prevention
   uniform_bucket_level_access = each.value.uniform_bucket_level_access
   versioning                  = each.value.versioning
@@ -16,6 +16,27 @@ module "bucket" {
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
 }
+
+# Example: Filtering buckets by environment and deployment tier (for advanced use cases)
+# locals {
+#   dev_buckets = [b for b in var.bucket if b.environment == "dev" && b.deployment_tier == "low"]
+#   prod_buckets = [b for b in var.bucket if b.environment == "prod" && b.deployment_tier == "high"]
+# }
+#
+# module "dev_bucket" {
+#   source = "gitrepo.dev//terraform-google-cloud-storage"
+#   for_each = { for b in local.dev_buckets : b.name => b }
+#   ...
+# }
+#
+# module "prod_bucket" {
+#   source = "gitrepo.dev//terraform-google-cloud-storage"
+#   for_each = { for b in local.prod_buckets : b.name => b }
+#   ...
+# }
+
+# Additional modules or resources can be scaffolded here for future expansion, such as bucket notifications, object management, etc.
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
