@@ -4,7 +4,6 @@ variable "bucket" {
   type = list(object({
     name                        = string
     project_id                  = string
-    environment                 = string # Added for multi-environment support
     location                    = string
     storage_class               = string
     public_access_prevention    = string

@@ -5,7 +5,6 @@ bucket = [
   {
     name                        = "dev-gcs-bucket-1234"
     project_id                  = "prj-gcp-dev-1111"
-    environment                 = "dev"
     location                    = "us-central1"
     storage_class               = "STANDARD"
     public_access_prevention    = "enforced"
@@ -14,7 +13,6 @@ bucket = [
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
-      environment     = "dev"
       team            = "data-eng"
     }
     lifecycle_rules = {
@@ -45,7 +43,6 @@ bucket = [
   {
     name                        = "prod-gcs-bucket-1480"
     project_id                  = "prj-gcp-prod-1234"
-    environment                 = "prod"
     location                    = "us-central1"
     storage_class               = "STANDARD"
     public_access_prevention    = "enforced"
@@ -54,7 +51,6 @@ bucket = [
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
-      environment     = "prod"
       team            = "analytics"
     }
     lifecycle_rules = {
