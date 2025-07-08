@@ -42,5 +42,12 @@ variable "bucket" {
       role   = string
       member = string
     })))
+    # Feature for live streaming
+    cors = optional(list(object({
+      origin          = list(string)
+      method          = list(string)
+      response_header = list(string)
+      max_age_seconds = number
+    })))
   }))
 }

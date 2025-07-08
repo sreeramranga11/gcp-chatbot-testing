@@ -15,7 +15,22 @@ module "bucket" {
   logging                     = try(each.value.logging, null)
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
+  cors                        = try(each.value.cors, null)
 }
+
+# Example: Filtering buckets by environment (for advanced use cases)
+# locals {
+#   env_buckets = [b for b in var.bucket if b.environment == var.target_environment]
+# }
+#
+# module "env_bucket" {
+#   source = "gitrepo.dev//terraform-google-cloud-storage"
+#   for_each = { for b in local.env_buckets : b.name => b }
+#   ...
+# }
+
+# Additional modules or resources can be scaffolded here for future expansion, such as bucket notifications, object management, etc.
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
