@@ -81,5 +81,125 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "staging-gcs-bucket-1700"
+    project_id                  = "prj-gcp-staging-1337"
+    environment                 = "staging"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "staging"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 14
+          matches_prefix = ["staging/temp/"]
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "staging-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-staging-1337/locations/global/keyRings/staging-kr/cryptoKeys/staging-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:staging@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "qa-gcs-bucket-1900"
+    project_id                  = "prj-gcp-qa-1444"
+    environment                 = "qa"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "qa"
+      team            = "qa-team"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 7
+          matches_prefix = ["qa/temp/"]
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "qa-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-qa-1444/locations/global/keyRings/qa-kr/cryptoKeys/qa-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:qa@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "uat-gcs-bucket-2200"
+    project_id                  = "prj-gcp-uat-1555"
+    environment                 = "uat"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "uat"
+      team            = "testing-team"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 14
+          matches_prefix = ["uat/temp/"]
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "uat-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-uat-1555/locations/global/keyRings/uat-kr/cryptoKeys/uat-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:uat@example.com"
+      }
+    ]
   }
 ]
