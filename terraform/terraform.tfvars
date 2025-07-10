@@ -81,5 +81,53 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "qa-gcs-bucket-1001"
+    project_id                  = "prj-gcp-qa-1001"
+    environment                 = "qa"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "qa"
+      team            = "qa-team"
+    }
+  },
+  {
+    name                        = "test-gcs-bucket-2002"
+    project_id                  = "prj-gcp-test-2002"
+    environment                 = "test"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "test"
+      team            = "test-team"
+    }
+  },
+  {
+    name                        = "monkey-gcs-bucket-3003"
+    project_id                  = "prj-gcp-dev-1111"  # Example - Adjust project ID as needed
+    environment                 = "monkey"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "monkey"
+      team            = "dev-team" # Example - Adjust as needed
+    }
   }
 ]
