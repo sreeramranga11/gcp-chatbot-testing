@@ -81,5 +81,85 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "moose-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "moose"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "moose"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "cat-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "cat"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "cat"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "dog-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "dog"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "dog"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "horse-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "horse"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "horse"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "kangaroo-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "kangaroo"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "kangaroo"
+      team            = "data-eng"
+    }
   }
 ]
