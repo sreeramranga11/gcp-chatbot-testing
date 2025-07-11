@@ -81,5 +81,123 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "ca-gcs-bucket-1000"
+    project_id                  = "prj-gcp-ca-1234"
+    environment                 = "california"
+    location                    = "us-west1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = true
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "california"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 90
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "ca-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-ca-1234/locations/global/keyRings/ca-kr/cryptoKeys/ca-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:ca@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "tx-gcs-bucket-2000"
+    project_id                  = "prj-gcp-tx-5678"
+    environment                 = "texas"
+    location                    = "us-east1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "texas"
+      team            = "ops"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "SetStorageClass"
+          storage_class = "NEARLINE"
+        }
+        condition = {
+          age = 30
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "tx-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-tx-5678/locations/global/keyRings/tx-kr/cryptoKeys/tx-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:tx@example.com"
+      }
+    ]
+  },
+    {
+    name                        = "ny-gcs-bucket-3000"
+    project_id                  = "prj-gcp-ny-9101"
+    environment                 = "newyork"
+    location                    = "us-east4"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "newyork"
+      team            = "security"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 60
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "ny-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-ny-9101/locations/global/keyRings/ny-kr/cryptoKeys/ny-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:ny@example.com"
+      }
+    ]
   }
 ]
