@@ -11,7 +11,7 @@ variable "bucket" {
     uniform_bucket_level_access = bool
     versioning                  = bool
     labels                      = map(any)
-    lifecycle_rules = optional(map(object({
+    lifecycle_rules = optional(list(object({
       action = object({
         type          = string
         storage_class = optional(string)
