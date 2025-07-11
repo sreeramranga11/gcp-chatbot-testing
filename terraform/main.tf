@@ -6,7 +6,7 @@ module "bucket" {
   project_id                  = each.value.project_id
   location                    = each.value.location
   storage_class               = each.value.storage_class
-  labels                      = merge(each.value.labels, { environment = each.value.environment })
+  labels                      = merge(each.value.labels, { environment = each.value.environment, managed_by = "terraform" })
   public_access_prevention    = each.value.public_access_prevention
   uniform_bucket_level_access = each.value.uniform_bucket_level_access
   versioning                  = each.value.versioning
@@ -15,7 +15,11 @@ module "bucket" {
   logging                     = try(each.value.logging, null)
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
+  # Enable object lifecycle configurations for enhanced security and cost management
+  # This might involve enabling specific actions on objects based on age or other criteria
+  #  example: archive older objects
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {

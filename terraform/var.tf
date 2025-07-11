@@ -42,5 +42,10 @@ variable "bucket" {
       role   = string
       member = string
     })))
+    # Security-related settings - consider moving to defaults or a separate security.tfvars file
+    # retention_policy = optional(object({ # Example (if the module supports it)
+    #  is_locked = bool
+    #  retention_period = number
+    # }))
   }))
 }

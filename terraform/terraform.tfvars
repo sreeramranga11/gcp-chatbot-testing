@@ -39,6 +39,10 @@ bucket = [
       {
         role   = "roles/storage.objectViewer"
         member = "user:dev@example.com"
+      },
+      { # Recommended: Grant project owners/admins full control
+        role   = "roles/storage.objectAdmin"
+        member = "group:dev-admins@example.com"
       }
     ]
   },
