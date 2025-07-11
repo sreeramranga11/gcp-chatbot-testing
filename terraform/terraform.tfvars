@@ -17,8 +17,8 @@ bucket = [
       environment     = "dev"
       team            = "data-eng"
     }
-    lifecycle_rules = {
-      "rule1" = {
+    lifecycle_rules = [
+      {
         action = {
           type = "Delete"
         }
@@ -27,7 +27,7 @@ bucket = [
           matches_prefix = ["ingestion/backup/"]
         }
       }
-    }
+    ]
     logging = {
       log_bucket        = "dev-logging-bucket"
       log_object_prefix = "logs/"
@@ -57,8 +57,8 @@ bucket = [
       environment     = "prod"
       team            = "analytics"
     }
-    lifecycle_rules = {
-      "rule1" = {
+    lifecycle_rules = [
+      {
         action = {
           type = "SetStorageClass"
           storage_class = "NEARLINE"
@@ -67,7 +67,7 @@ bucket = [
           age = 60
         }
       }
-    }
+    ]
     logging = {
       log_bucket        = "prod-logging-bucket"
       log_object_prefix = "logs/"
