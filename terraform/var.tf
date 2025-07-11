@@ -44,3 +44,6 @@ variable "bucket" {
     })))
   }))
 }
+
+variable "gcs_bucket_module_source" {
+}
