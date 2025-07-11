@@ -10,7 +10,7 @@ bucket = [
     storage_class               = "STANDARD"
     public_access_prevention    = "enforced"
     uniform_bucket_level_access = true
-    versioning                  = false
+    versioning                  = true # Enabling versioning by default for better data protection
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
@@ -39,6 +39,10 @@ bucket = [
       {
         role   = "roles/storage.objectViewer"
         member = "user:dev@example.com"
+      },
+      {
+        role   = "roles/storage.objectCreator" # Adding object creator role to allow uploads
+        member = "user:dev@example.com"
       }
     ]
   },
@@ -50,7 +54,7 @@ bucket = [
     storage_class               = "STANDARD"
     public_access_prevention    = "enforced"
     uniform_bucket_level_access = true
-    versioning                  = true
+    versioning                  = true # Enabling versioning by default for better data protection
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
