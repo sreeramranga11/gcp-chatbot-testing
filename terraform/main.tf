@@ -17,6 +17,7 @@ module "bucket" {
   iam_bindings                = try(each.value.iam_bindings, null)
 }
 
+
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
 #   env_buckets = [b for b in var.bucket if b.environment == var.target_environment]
