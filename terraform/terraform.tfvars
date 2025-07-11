@@ -60,7 +60,7 @@ bucket = [
     lifecycle_rules = {
       "rule1" = {
         action = {
-          type = "SetStorageClass"
+          type          = "SetStorageClass"
           storage_class = "NEARLINE"
         }
         condition = {
