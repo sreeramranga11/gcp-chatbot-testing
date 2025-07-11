@@ -10,12 +10,34 @@ module "bucket" {
   public_access_prevention    = each.value.public_access_prevention
   uniform_bucket_level_access = each.value.uniform_bucket_level_access
   versioning                  = each.value.versioning
-  lifecycle_rules             = each.value.lifecycle_rules
+  dynamic "lifecycle_rule" {
+    for_each = each.value.lifecycle_rules
+    content {
+      action = {
+        type          = lifecycle_rule.value.action.type
+        storage_class = lifecycle_rule.value.action.storage_class
+      }
+      condition = {
+        age                        = lifecycle_rule.value.condition.age
+        created_before             = lifecycle_rule.value.condition.created_before
+        custom_time_before         = lifecycle_rule.value.condition.custom_time_before
+        days_since_custom_time     = lifecycle_rule.value.condition.days_since_custom_time
+        days_since_noncurrent_time = lifecycle_rule.value.condition.days_since_noncurrent_time
+        matches_prefix             = lifecycle_rule.value.condition.matches_prefix
+        matches_storage_class      = lifecycle_rule.value.condition.matches_storage_class
+        matches_suffix             = lifecycle_rule.value.condition.matches_suffix
+        noncurrent_time_before     = lifecycle_rule.value.condition.noncurrent_time_before
+        num_newer_versions         = lifecycle_rule.value.condition.num_newer_versions
+        with_state                 = lifecycle_rule.value.condition.with_state
+      }
+    }
+  }
   # Optional future features for extensibility
   logging                     = try(each.value.logging, null)
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
