@@ -6,7 +6,7 @@ variable "bucket" {
     project_id                  = string
     environment                 = string # Added for multi-environment support
     location                    = string
-    storage_class               = string
+    storage_class = string
     public_access_prevention    = string
     uniform_bucket_level_access = bool
     versioning                  = bool
@@ -43,4 +43,11 @@ variable "bucket" {
       member = string
     })))
   }))
+  validation {
+    condition     = alltrue([
+      for bucket in var.bucket :
+      contains(["STANDARD", "MULTI_REGIONAL", "REGIONAL", "NEARLINE", "COLDLINE", "ARCHIVE", "DURABLE_REDUCED_AVAILABILITY"], bucket.storage_class)
+    ])
+    error_message = "Invalid storage class. Allowed values are STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY."
+  }
 }
