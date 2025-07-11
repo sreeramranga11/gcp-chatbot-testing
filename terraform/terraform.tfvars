@@ -81,5 +81,53 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "california-gcs-bucket-1000"
+    project_id                  = "prj-gcp-dev-1111" # Example: Assuming same project for simplicity
+    environment                 = "california"
+    location                    = "us-west1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "california"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "texas-gcs-bucket-2000"
+    project_id                  = "prj-gcp-dev-1111"  # Example: Assuming same project for simplicity
+    environment                 = "texas"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "texas"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "florida-gcs-bucket-3000"
+    project_id                  = "prj-gcp-dev-1111"  # Example: Assuming same project for simplicity
+    environment                 = "florida"
+    location                    = "us-east1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "florida"
+      team            = "data-eng"
+    }
   }
 ]
