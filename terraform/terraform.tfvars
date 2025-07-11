@@ -81,5 +81,65 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "brazil-gcs-bucket-1000"
+    project_id                  = "prj-gcp-brazil-1000"
+    environment                 = "brazil"
+    location                    = "us-east1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "brazil"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {}
+    logging = null
+    encryption = null
+    iam_bindings = []
+  },
+  {
+    name                        = "germany-gcs-bucket-2000"
+    project_id                  = "prj-gcp-germany-2000"
+    environment                 = "germany"
+    location                    = "europe-west3"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = true
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "germany"
+      team            = "analytics"
+    }
+    lifecycle_rules = {}
+    logging = null
+    encryption = null
+    iam_bindings = []
+  },
+  {
+    name                        = "japan-gcs-bucket-3000"
+    project_id                  = "prj-gcp-japan-3000"
+    environment                 = "japan"
+    location                    = "asia-northeast1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "japan"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {}
+    logging = null
+    encryption = null
+    iam_bindings = []
   }
 ]
