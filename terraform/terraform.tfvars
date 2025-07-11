@@ -41,6 +41,7 @@ bucket = [
         member = "user:dev@example.com"
       }
     ]
+    # ... other attributes
   },
   {
     name                        = "prod-gcs-bucket-1480"
@@ -81,5 +82,6 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+    # ... other attributes
   }
 ]
