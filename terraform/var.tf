@@ -44,3 +44,9 @@ variable "bucket" {
     })))
   }))
 }
+
+variable "target_environment" {
+  type        = string
+  description = "The target environment to filter buckets for (e.g., 'dev', 'prod')"
+  default     = "dev"
+}
