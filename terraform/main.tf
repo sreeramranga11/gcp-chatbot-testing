@@ -1,5 +1,5 @@
 module "bucket" {
-  source                      = "gitrepo.dev//terraform-google-cloud-storage"
+  source                      = "git::git@gitrepo.dev//terraform-google-cloud-storage.git//modules/gcs-bucket"
   version                     = "1.0.3"
   for_each                    = { for eachbucket in var.bucket : eachbucket.name => eachbucket }
   name                        = each.key
@@ -16,6 +16,20 @@ module "bucket" {
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
 }
+
+# Example: Filtering buckets by environment (for advanced use cases)
+# locals {
+#   env_buckets = [b for b in var.bucket if b.environment == var.target_environment]
+# }
+#
+# module "env_bucket" {
+#   source = "git::git@gitrepo.dev//terraform-google-cloud-storage.git//modules/gcs-bucket"
+#   for_each = { for b in local.env_buckets : b.name => b }
+#   ...
+# }
+
+# Additional modules or resources can be scaffolded here for future expansion, such as bucket notifications, object management, etc.
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
