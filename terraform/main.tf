@@ -15,7 +15,10 @@ module "bucket" {
   logging                     = try(each.value.logging, null)
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
+  # Enable object versioning to prevent accidental data loss and allow for data recovery.
+  default_event_based_hold = false # Enable default event based hold to prevent object deletion until explicitly released.
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
