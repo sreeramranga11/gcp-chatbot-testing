@@ -81,5 +81,44 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "staging-gcs-bucket-1729"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "staging"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "staging"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 14
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "dev-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-dev-1111/locations/global/keyRings/dev-kr/cryptoKeys/dev-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:staging@example.com"
+      }
+    ]
   }
 ]
