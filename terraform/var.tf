@@ -43,4 +43,10 @@ variable "bucket" {
       member = string
     })))
   }))
+  validation {
+    condition     = alltrue([
+      for b in var.bucket : contains(["STANDARD", "MULTI_REGIONAL", "REGIONAL", "NEARLINE", "COLDLINE", "ARCHIVE", "DURABLE_REDUCED_AVAILABILITY"], b.storage_class)
+    ])
+    error_message = "The storage_class must be one of: STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, DURABLE_REDUCED_AVAILABILITY."
+  }
 }
