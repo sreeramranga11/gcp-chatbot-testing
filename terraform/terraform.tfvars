@@ -81,5 +81,53 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "france-gcs-bucket-1001"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "france"
+    location                    = "europe-west1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "france"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "germany-gcs-bucket-1002"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "germany"
+    location                    = "europe-west3"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "germany"
+      team            = "data-eng"
+    }
+  },
+  {
+    name                        = "japan-gcs-bucket-1003"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "japan"
+    location                    = "asia-northeast1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "japan"
+      team            = "data-eng"
+    }
   }
 ]
