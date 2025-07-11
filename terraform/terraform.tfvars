@@ -81,5 +81,95 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "france-gcs-bucket-9999"
+    project_id                  = "prj-gcp-france-1111"
+    environment                 = "france"
+    location                    = "europe-west1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2024"
+      environment     = "france"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {}
+    logging = {
+      log_bucket        = "france-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-france-1111/locations/global/keyRings/france-kr/cryptoKeys/france-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:france@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "germany-gcs-bucket-8888"
+    project_id                  = "prj-gcp-germany-2222"
+    environment                 = "germany"
+    location                    = "europe-west3"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = true
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2024"
+      environment     = "germany"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {}
+    logging = {
+      log_bucket        = "germany-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-germany-2222/locations/global/keyRings/germany-kr/cryptoKeys/germany-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:germany@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "japan-gcs-bucket-7777"
+    project_id                  = "prj-gcp-japan-3333"
+    environment                 = "japan"
+    location                    = "asia-northeast1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2024"
+      environment     = "japan"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {}
+    logging = {
+      log_bucket        = "japan-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-japan-3333/locations/global/keyRings/japan-kr/cryptoKeys/japan-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:japan@example.com"
+      }
+    ]
   }
 ]
