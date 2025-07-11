@@ -4,7 +4,7 @@ variable "bucket" {
   type = list(object({
     name                        = string
     project_id                  = string
-    environment                 = string # Added for multi-environment support
+    environment                 = string
     location                    = string
     storage_class               = string
     public_access_prevention    = string
@@ -23,11 +23,11 @@ variable "bucket" {
         days_since_custom_time     = optional(number)
         days_since_noncurrent_time = optional(number)
         matches_prefix             = optional(list(string))
-        matches_storage_class      = optional(list(string)) # STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, DURABLE_REDUCED_AVAILABILITY
+        matches_storage_class      = optional(list(string))
         matches_suffix             = optional(list(string))
         noncurrent_time_before     = optional(string)
         num_newer_versions         = optional(number)
-        with_state                 = optional(string) # "LIVE", "ARCHIVED", "ANY"
+        with_state                 = optional(string)
       })
     })))
     # Optional future features for extensibility
