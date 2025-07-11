@@ -23,7 +23,7 @@ variable "bucket" {
         days_since_custom_time     = optional(number)
         days_since_noncurrent_time = optional(number)
         matches_prefix             = optional(list(string))
-        matches_storage_class      = optional(list(string)) # STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, DURABLE_REDUCED_AVAILABILITY
+        matches_storage_class      = optional(list(string))
         matches_suffix             = optional(list(string))
         noncurrent_time_before     = optional(string)
         num_newer_versions         = optional(number)
