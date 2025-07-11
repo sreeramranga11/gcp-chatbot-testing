@@ -44,3 +44,9 @@ variable "bucket" {
     })))
   }))
 }
+
+variable "gcs_bucket_module_source" {
+  type        = string
+  description = "The source for the GCS bucket module."
+  default     = "gitrepo.dev//terraform-google-cloud-storage"
+}
