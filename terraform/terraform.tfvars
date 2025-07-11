@@ -39,6 +39,10 @@ bucket = [
       {
         role   = "roles/storage.objectViewer"
         member = "user:dev@example.com"
+      },
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:alice@example.com"
       }
     ]
   },
