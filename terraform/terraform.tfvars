@@ -81,5 +81,65 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "france-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111" # Replace with actual project ID
+    environment                 = "france"
+    location                    = "europe-west1" # Replace with a location appropriate for France
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "france"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {} # Define lifecycle rules as needed
+    logging                     = null
+    encryption                  = null
+    iam_bindings                = [] # Define IAM bindings as needed
+  },
+  {
+    name                        = "germany-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111" # Replace with actual project ID
+    environment                 = "germany"
+    location                    = "europe-west3" # Replace with a location appropriate for Germany
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "germany"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {} # Define lifecycle rules as needed
+    logging                     = null
+    encryption                  = null
+    iam_bindings                = [] # Define IAM bindings as needed
+  },
+  {
+    name                        = "japan-gcs-bucket"
+    project_id                  = "prj-gcp-dev-1111" # Replace with actual project ID
+    environment                 = "japan"
+    location                    = "asia-northeast1" # Replace with a location appropriate for Japan
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "japan"
+      team            = "data-eng"
+    }
+    lifecycle_rules = {} # Define lifecycle rules as needed
+    logging                     = null
+    encryption                  = null
+    iam_bindings                = [] # Define IAM bindings as needed
   }
 ]
