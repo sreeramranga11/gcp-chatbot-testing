@@ -81,5 +81,45 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "staging-gcs-bucket-1481"
+    project_id                  = "prj-gcp-staging-1235"
+    environment                 = "staging"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "staging"
+      team            = "analytics"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "SetStorageClass"
+          storage_class = "NEARLINE"
+        }
+        condition = {
+          age = 30
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "staging-logging-bucket"
+      log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-staging-1235/locations/global/keyRings/staging-kr/cryptoKeys/staging-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectViewer"
+        member = "user:staging@example.com"
+      }
+    ]
   }
 ]
