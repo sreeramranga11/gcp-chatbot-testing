@@ -10,7 +10,7 @@ bucket = [
     storage_class               = "STANDARD"
     public_access_prevention    = "enforced"
     uniform_bucket_level_access = true
-    versioning                  = false
+    versioning                  = true # Enable versioning by default
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
@@ -39,6 +39,10 @@ bucket = [
       {
         role   = "roles/storage.objectViewer"
         member = "user:dev@example.com"
+      },
+      { # Added: Grant OWNER permissions to the project owner for recovery purposes.  Ideally use service accounts managed with Vault
+        role   = "roles/storage.objectOwner"
+        member = "user:dev@example.com"
       }
     ]
   },
@@ -50,7 +54,7 @@ bucket = [
     storage_class               = "STANDARD"
     public_access_prevention    = "enforced"
     uniform_bucket_level_access = true
-    versioning                  = true
+    versioning                  = true # Enable versioning by default
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
@@ -78,6 +82,10 @@ bucket = [
     iam_bindings = [
       {
         role   = "roles/storage.admin"
+        member = "group:prod-admins@example.com"
+      },
+      { # Added: Grant OWNER permissions to the project owner for recovery purposes.  Ideally use service accounts managed with Vault
+        role   = "roles/storage.objectOwner"
         member = "group:prod-admins@example.com"
       }
     ]
