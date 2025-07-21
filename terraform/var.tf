@@ -41,6 +41,11 @@ variable "bucket" {
     iam_bindings = optional(list(object({
       role   = string
       member = string
+      condition = optional(object({
+        title       = string
+        description = string
+        expression  = string
+      }))
     })))
   }))
 }
