@@ -10,6 +10,7 @@ variable "bucket" {
     public_access_prevention    = string
     uniform_bucket_level_access = bool
     versioning                  = bool
+    ingress_policy              = optional(string)
     labels                      = map(any)
     lifecycle_rules = optional(map(object({
       action = object({
