@@ -11,6 +11,7 @@ bucket = [
     public_access_prevention    = "enforced"
     uniform_bucket_level_access = true
     versioning                  = false
+    deletion_protection         = true
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
@@ -23,8 +24,16 @@ bucket = [
           type = "Delete"
         }
         condition = {
-          age = 30
+          age            = 30
           matches_prefix = ["ingestion/backup/"]
+        }
+      },
+      "clean-incomplete-uploads" = {
+        action = {
+          type = "AbortIncompleteMultipartUpload"
+        }
+        condition = {
+          age = 7
         }
       }
     }
@@ -51,6 +60,7 @@ bucket = [
     public_access_prevention    = "enforced"
     uniform_bucket_level_access = true
     versioning                  = true
+    deletion_protection         = true
     labels = {
       created_by      = "terraform"
       created_on_date = "11-08-2023"
@@ -60,11 +70,19 @@ bucket = [
     lifecycle_rules = {
       "rule1" = {
         action = {
-          type = "SetStorageClass"
+          type          = "SetStorageClass"
           storage_class = "NEARLINE"
         }
         condition = {
           age = 60
+        }
+      },
+      "clean-incomplete-uploads" = {
+        action = {
+          type = "AbortIncompleteMultipartUpload"
+        }
+        condition = {
+          age = 7
         }
       }
     }
