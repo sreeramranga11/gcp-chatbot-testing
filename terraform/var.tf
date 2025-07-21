@@ -31,6 +31,13 @@ variable "bucket" {
       })
     })))
     # Optional future features for extensibility
+    autoclass = optional(object({
+      enabled = bool
+    }), "Enable Autoclass for automatic storage class management.")
+    retention_policy = optional(object({
+      is_locked        = bool
+      retention_period = number # in seconds
+    }), "Configure a retention policy to protect against data deletion.")
     logging = optional(object({
       log_bucket        = string
       log_object_prefix = string
@@ -43,4 +50,10 @@ variable "bucket" {
       member = string
     })))
   }))
+  description = "A list of Google Cloud Storage buckets to create and manage."
+
+  validation {
+    condition     = alltrue([for b in var.bucket : contains(["enforced", "inherited"], b.public_access_prevention)])
+    error_message = "Invalid value for public_access_prevention. Allowed values are 'enforced' or 'inherited'."
+  }
 }
