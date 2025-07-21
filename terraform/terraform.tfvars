@@ -81,5 +81,21 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "integration-files-bucket-5678"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "integration"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "integration"
+      team            = "integration"
+    }
   }
 ]
