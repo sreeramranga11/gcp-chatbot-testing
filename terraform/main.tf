@@ -10,12 +10,14 @@ module "bucket" {
   public_access_prevention    = each.value.public_access_prevention
   uniform_bucket_level_access = each.value.uniform_bucket_level_access
   versioning                  = each.value.versioning
+  ingress_policy              = try(each.value.ingress_policy, null)
   lifecycle_rules             = each.value.lifecycle_rules
   # Optional future features for extensibility
   logging                     = try(each.value.logging, null)
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
