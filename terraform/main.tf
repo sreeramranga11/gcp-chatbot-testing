@@ -12,10 +12,13 @@ module "bucket" {
   versioning                  = each.value.versioning
   lifecycle_rules             = each.value.lifecycle_rules
   # Optional future features for extensibility
-  logging                     = try(each.value.logging, null)
+  autoclass                   = try(each.value.autoclass, null)
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
+  logging                     = try(each.value.logging, null)
+  retention_policy            = try(each.value.retention_policy, null)
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
