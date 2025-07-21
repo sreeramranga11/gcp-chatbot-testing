@@ -39,8 +39,13 @@ variable "bucket" {
       default_kms_key_name = string
     }))
     iam_bindings = optional(list(object({
-      role   = string
-      member = string
+      role      = string
+      member    = string
+      condition = optional(object({
+        title       = string
+        description = optional(string)
+        expression  = string
+      }))
     })))
   }))
 }
