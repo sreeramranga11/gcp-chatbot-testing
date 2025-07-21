@@ -39,6 +39,11 @@ bucket = [
       {
         role   = "roles/storage.objectViewer"
         member = "user:dev@example.com"
+        condition = {
+          title       = "source-ip-restriction"
+          description = "Restrict access to corporate IP ranges."
+          expression  = "request.ip in ['203.0.113.0/24', '198.51.100.0/24']"
+        }
       }
     ]
   },
@@ -79,6 +84,11 @@ bucket = [
       {
         role   = "roles/storage.admin"
         member = "group:prod-admins@example.com"
+        condition = {
+          title       = "source-ip-restriction"
+          description = "Restrict access to corporate IP ranges."
+          expression  = "request.ip in ['203.0.113.0/24', '198.51.100.0/24']"
+        }
       }
     ]
   }
