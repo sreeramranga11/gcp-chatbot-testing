@@ -1,5 +1,5 @@
 module "bucket" {
-  source                      = "gitrepo.dev//terraform-google-cloud-storage"
+  source                      = "git::https://gitrepo.dev//terraform-google-cloud-storage"
   version                     = "1.0.3"
   for_each                    = { for eachbucket in var.bucket : eachbucket.name => eachbucket }
   name                        = each.key
@@ -16,6 +16,7 @@ module "bucket" {
   encryption                  = try(each.value.encryption, null)
   iam_bindings                = try(each.value.iam_bindings, null)
 }
+
 
 # Example: Filtering buckets by environment (for advanced use cases)
 # locals {
