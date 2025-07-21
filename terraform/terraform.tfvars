@@ -30,7 +30,7 @@ bucket = [
     }
     logging = {
       log_bucket        = "dev-logging-bucket"
-      log_object_prefix = "logs/"
+      log_object_prefix = "logs/dev-gcs-bucket-1234/"
     }
     encryption = {
       default_kms_key_name = "projects/prj-gcp-dev-1111/locations/global/keyRings/dev-kr/cryptoKeys/dev-key"
@@ -70,7 +70,7 @@ bucket = [
     }
     logging = {
       log_bucket        = "prod-logging-bucket"
-      log_object_prefix = "logs/"
+      log_object_prefix = "logs/prod-gcs-bucket-1480/"
     }
     encryption = {
       default_kms_key_name = "projects/prj-gcp-prod-1234/locations/global/keyRings/prod-kr/cryptoKeys/prod-key"
@@ -81,5 +81,28 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "dev-integration-bucket-5678"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "dev"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "dev"
+      team            = "integration"
+    }
+    logging = {
+      log_bucket        = "dev-logging-bucket"
+      log_object_prefix = "logs/dev-integration-bucket-5678/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-dev-1111/locations/global/keyRings/dev-kr/cryptoKeys/dev-key"
+    }
   }
 ]
