@@ -23,8 +23,16 @@ bucket = [
           type = "Delete"
         }
         condition = {
-          age = 30
+          age            = 30
           matches_prefix = ["ingestion/backup/"]
+        }
+      },
+      "abort_incomplete_uploads" = {
+        action = {
+          type = "AbortIncompleteMultipartUpload"
+        }
+        condition = {
+          age = 7
         }
       }
     }
@@ -60,13 +68,25 @@ bucket = [
     lifecycle_rules = {
       "rule1" = {
         action = {
-          type = "SetStorageClass"
+          type          = "SetStorageClass"
           storage_class = "NEARLINE"
         }
         condition = {
           age = 60
         }
+      },
+      "abort_incomplete_uploads" = {
+        action = {
+          type = "AbortIncompleteMultipartUpload"
+        }
+        condition = {
+          age = 7
+        }
       }
+    }
+    retention_policy = {
+      is_locked        = false
+      retention_period = 86400 # 1 day in seconds
     }
     logging = {
       log_bucket        = "prod-logging-bucket"
