@@ -1,6 +1,9 @@
 # GCS BUCKET ATTRIBUTES
 
 # Example: Multi-environment bucket definitions
+# GCS BUCKET ATTRIBUTES
+
+# Example: Multi-environment bucket definitions
 bucket = [
   {
     name                        = "dev-gcs-bucket-1234"
@@ -60,7 +63,7 @@ bucket = [
     lifecycle_rules = {
       "rule1" = {
         action = {
-          type = "SetStorageClass"
+          type          = "SetStorageClass"
           storage_class = "NEARLINE"
         }
         condition = {
@@ -79,6 +82,45 @@ bucket = [
       {
         role   = "roles/storage.admin"
         member = "group:prod-admins@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "dev-gcs-integration-files-5678"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "dev"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = true
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "dev"
+      team            = "integration"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type = "Delete"
+        }
+        condition = {
+          age = 90
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "dev-logging-bucket"
+      log_object_prefix = "logs/integration/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-dev-1111/locations/global/keyRings/dev-kr/cryptoKeys/dev-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.objectAdmin"
+        member = "user:integration-user@example.com"
       }
     ]
   }
