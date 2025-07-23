@@ -44,3 +44,43 @@ variable "bucket" {
     })))
   }))
 }
+
+variable "pubsub_topics" {
+  description = "A list of Pub/Sub topics to create."
+  type = list(object({
+    name       = string
+    project_id = string
+    labels     = optional(map(string))
+    iam_bindings = optional(list(object({
+      role   = string
+      member = string
+    })))
+  }))
+  default = []
+}
+
+variable "bigquery_datasets" {
+  description = "A list of BigQuery datasets to create."
+  type = list(object({
+    dataset_id                  = string
+    project_id                  = string
+    location                    = string
+    friendly_name               = optional(string)
+    description                 = optional(string)
+    labels                      = optional(map(string))
+    default_table_expiration_ms = optional(number)
+    access = optional(list(object({
+      role           = optional(string)
+      user_by_email  = optional(string)
+      group_by_email = optional(string)
+      domain         = optional(string)
+      special_group  = optional(string)
+      view = optional(object({
+        project_id = string
+        dataset_id = string
+        table_id   = string
+      }))
+    })))
+  }))
+  default = []
+}
