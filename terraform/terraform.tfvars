@@ -83,3 +83,44 @@ bucket = [
     ]
   }
 ]
+
+pubsub_topics = [
+  {
+    name       = "dev-event-streaming-topic"
+    project_id = "prj-gcp-dev-1111"
+    labels     = {
+      environment = "dev"
+      purpose     = "event-streaming"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/pubsub.publisher"
+        member = "serviceAccount:publisher-sa@prj-gcp-dev-1111.iam.gserviceaccount.com"
+      }
+    ]
+  }
+]
+
+bigquery_datasets = [
+  {
+    dataset_id    = "analytics_dev"
+    project_id    = "prj-gcp-dev-1111"
+    location      = "us-central1"
+    friendly_name = "Dev Analytics Dataset"
+    description   = "Dataset for analytics in the dev environment"
+    labels        = {
+      environment = "dev"
+      team        = "analytics"
+    }
+    access = [
+      {
+        role           = "roles/bigquery.dataViewer"
+        group_by_email = "analytics-team@example.com"
+      },
+      {
+        role           = "roles/bigquery.dataEditor"
+        user_by_email  = "dev@example.com"
+      }
+    ]
+  }
+]
