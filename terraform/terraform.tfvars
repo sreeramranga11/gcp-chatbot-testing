@@ -60,7 +60,7 @@ bucket = [
     lifecycle_rules = {
       "rule1" = {
         action = {
-          type = "SetStorageClass"
+          type          = "SetStorageClass"
           storage_class = "NEARLINE"
         }
         condition = {
@@ -81,5 +81,24 @@ bucket = [
         member = "group:prod-admins@example.com"
       }
     ]
+  },
+  {
+    name                        = "int-gcs-bucket-5678"
+    project_id                  = "prj-gcp-int-2222"
+    environment                 = "int"
+    location                    = "us-central1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = false
+    labels = {
+      created_by      = "terraform"
+      created_on_date = "11-08-2023"
+      environment     = "int"
+      team            = "integration"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-int-2222/locations/global/keyRings/int-kr/cryptoKeys/int-key"
+    }
   }
 ]
