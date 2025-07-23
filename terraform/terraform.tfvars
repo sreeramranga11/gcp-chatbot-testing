@@ -83,3 +83,38 @@ bucket = [
     ]
   }
 ]
+
+pubsub_topics = [
+  {
+    name       = "event-streaming-topic"
+    project_id = "prj-gcp-dev-1111"
+    labels = {
+      environment = "dev"
+      team        = "data-eng"
+    }
+  }
+]
+
+bigquery_datasets = [
+  {
+    dataset_id    = "analytics_dataset"
+    project_id    = "prj-gcp-dev-1111"
+    location      = "us-central1"
+    friendly_name = "Analytics Dataset"
+    description   = "Dataset for analytics workloads"
+    labels = {
+      environment = "dev"
+      team        = "analytics"
+    }
+    access = [
+      {
+        role           = "roles/bigquery.dataViewer"
+        user_by_email  = "dev@example.com"
+      },
+      {
+        role           = "roles/bigquery.dataEditor"
+        group_by_email = "analytics-team@example.com"
+      }
+    ]
+  }
+]
