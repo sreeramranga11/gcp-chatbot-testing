@@ -44,3 +44,43 @@ variable "bucket" {
     })))
   }))
 }
+
+variable "gke_cluster_name" {
+  description = "The name for the GKE cluster."
+  type        = string
+}
+
+variable "gke_project_id" {
+  description = "The GCP project ID to host the GKE cluster."
+  type        = string
+}
+
+variable "gke_location" {
+  description = "The GCP location (region or zone) for the GKE cluster."
+  type        = string
+}
+
+variable "gke_network_name" {
+  description = "The name of the VPC network for the GKE cluster."
+  type        = string
+}
+
+variable "gke_subnetwork_name" {
+  description = "The name of the subnetwork for the GKE cluster."
+  type        = string
+}
+
+variable "gke_node_pool_name" {
+  description = "The name of the GKE node pool."
+  type        = string
+}
+
+variable "gke_node_count" {
+  description = "The number of nodes in the GKE node pool."
+  type        = number
+}
+
+variable "gke_node_machine_type" {
+  description = "The machine type for the GKE nodes."
+  type        = string
+}
