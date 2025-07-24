@@ -60,7 +60,7 @@ bucket = [
     lifecycle_rules = {
       "rule1" = {
         action = {
-          type = "SetStorageClass"
+          type          = "SetStorageClass"
           storage_class = "NEARLINE"
         }
         condition = {
@@ -71,6 +71,47 @@ bucket = [
     logging = {
       log_bucket        = "prod-logging-bucket"
       log_object_prefix = "logs/"
+    }
+    encryption = {
+      default_kms_key_name = "projects/prj-gcp-prod-1234/locations/global/keyRings/prod-kr/cryptoKeys/prod-key"
+    }
+    iam_bindings = [
+      {
+        role   = "roles/storage.admin"
+        member = "group:prod-admins@example.com"
+      }
+    ]
+  },
+  {
+    name                        = "prod-streaming-india-5678"
+    project_id                  = "prj-gcp-prod-1234"
+    environment                 = "prod"
+    location                    = "asia-south1"
+    storage_class               = "STANDARD"
+    public_access_prevention    = "enforced"
+    uniform_bucket_level_access = true
+    versioning                  = true
+    labels = {
+      created_by = "terraform"
+      created_on = "11-08-2023"
+      environment = "prod"
+      team       = "streaming-media"
+      purpose    = "high-bitrate-streaming"
+    }
+    lifecycle_rules = {
+      "rule1" = {
+        action = {
+          type          = "SetStorageClass"
+          storage_class = "NEARLINE"
+        }
+        condition = {
+          age = 90
+        }
+      }
+    }
+    logging = {
+      log_bucket        = "prod-logging-bucket"
+      log_object_prefix = "logs/streaming-india/"
     }
     encryption = {
       default_kms_key_name = "projects/prj-gcp-prod-1234/locations/global/keyRings/prod-kr/cryptoKeys/prod-key"
