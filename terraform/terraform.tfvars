@@ -83,3 +83,28 @@ bucket = [
     ]
   }
 ]
+
+pubsub_topics = [
+  {
+    name       = "dev-event-stream"
+    project_id = "prj-gcp-dev-1111"
+    labels = {
+      environment = "dev"
+      team        = "data-eng"
+    }
+  }
+]
+
+bigquery_datasets = [
+  {
+    dataset_id    = "dev_analytics"
+    project_id    = "prj-gcp-dev-1111"
+    location      = "us-central1"
+    friendly_name = "Dev Analytics"
+    description   = "Dataset for analytics in the dev environment"
+    labels = {
+      environment = "dev"
+      team        = "analytics"
+    }
+  }
+]
