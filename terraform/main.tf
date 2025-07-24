@@ -16,3 +16,15 @@ resource "null_resource" "test" {
 # }
 
 # Additional modules or resources can be scaffolded here for future expansion, such as bucket notifications, object management, etc.
+
+resource "google_pubsub_topic" "topic" {
+  for_each = { for topic in var.pubsub_topics : topic.name => topic }
+
+  project = each.value.project_id
+  name    = each.value.name
+  labels  = each.value.labels
+
+  message_storage_policy {
+    allowed_persistence_regions = each.value.allowed_persistence_regions
+  }
+}
