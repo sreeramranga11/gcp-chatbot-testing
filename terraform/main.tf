@@ -16,3 +16,22 @@ resource "null_resource" "test" {
 # }
 
 # Additional modules or resources can be scaffolded here for future expansion, such as bucket notifications, object management, etc.
+
+resource "google_pubsub_topic" "topic" {
+  for_each = { for topic in var.pubsub_topics : topic.name => topic }
+
+  project = each.value.project_id
+  name    = each.value.name
+  labels  = each.value.labels
+}
+
+resource "google_bigquery_dataset" "dataset" {
+  for_each = { for dataset in var.bigquery_datasets : dataset.dataset_id => dataset }
+
+  project       = each.value.project_id
+  dataset_id    = each.value.dataset_id
+  friendly_name = each.value.friendly_name
+  description   = each.value.description
+  location      = each.value.location
+  labels        = each.value.labels
+}
