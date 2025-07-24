@@ -44,3 +44,47 @@ variable "bucket" {
     })))
   }))
 }
+
+# PUBSUB TOPIC
+
+variable "pubsub_topics" {
+  description = "A list of Pub/Sub topics to create."
+  type = list(object({
+    name         = string
+    project_id   = string
+    labels       = optional(map(any))
+    iam_bindings = optional(list(object({
+      role   = string
+      member = string
+    })))
+  }))
+  default = []
+}
+
+# BIGQUERY DATASET
+
+variable "bigquery_datasets" {
+  description = "A list of BigQuery datasets to create."
+  type = list(object({
+    dataset_id                 = string
+    project                    = string
+    location                   = string
+    description                = optional(string, "Managed by Terraform")
+    delete_contents_on_destroy = optional(bool, false)
+    labels                     = optional(map(any))
+    access = optional(list(object({
+      role                     = string
+      user_by_email            = optional(string)
+      group_by_email           = optional(string)
+      service_account_by_email = optional(string)
+      special_group            = optional(string)
+      domain                   = optional(string)
+      view = optional(object({
+        project_id = string
+        dataset_id = string
+        table_id   = string
+      }))
+    })))
+  }))
+  default = []
+}
