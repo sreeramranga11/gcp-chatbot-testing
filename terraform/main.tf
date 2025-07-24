@@ -16,3 +16,17 @@ resource "null_resource" "test" {
 # }
 
 # Additional modules or resources can be scaffolded here for future expansion, such as bucket notifications, object management, etc.
+
+resource "google_compute_network" "vpc_east4" {
+  project                 = "prj-gcp-dev-1111"
+  name                    = "network-east4"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "subnet_east4" {
+  name          = "subnet-east4-main"
+  ip_cidr_range = "10.10.0.0/28"
+  region        = "us-east4"
+  network       = google_compute_network.vpc_east4.id
+  project       = "prj-gcp-dev-1111"
+}
