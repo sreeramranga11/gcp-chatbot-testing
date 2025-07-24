@@ -44,3 +44,15 @@ variable "bucket" {
     })))
   }))
 }
+
+variable "pubsub_topics" {
+  description = "A list of Pub/Sub topics to create."
+  type = list(object({
+    name                        = string
+    project_id                  = string
+    environment                 = string
+    labels                      = map(string)
+    allowed_persistence_regions = list(string)
+  }))
+  default = []
+}
