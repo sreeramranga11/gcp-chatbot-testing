@@ -83,3 +83,30 @@ bucket = [
     ]
   }
 ]
+
+# PUB/SUB TOPICS
+pubsub_topics = [
+  {
+    name       = "event-streaming-topic"
+    project_id = "prj-gcp-dev-1111"
+    labels = {
+      created_by = "terraform"
+      purpose    = "event-streaming"
+    }
+  }
+]
+
+# BIGQUERY DATASETS
+bigquery_datasets = [
+  {
+    dataset_id    = "analytics_dataset"
+    project_id    = "prj-gcp-dev-1111"
+    location      = "us-central1"
+    friendly_name = "Analytics Dataset"
+    description   = "Dataset for analytics data"
+    labels = {
+      created_by = "terraform"
+      team       = "analytics"
+    }
+  }
+]
