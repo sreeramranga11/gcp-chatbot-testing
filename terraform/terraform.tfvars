@@ -83,3 +83,28 @@ bucket = [
     ]
   }
 ]
+
+pubsub_topics = [
+  {
+    name                        = "dev-event-streaming-topic"
+    project_id                  = "prj-gcp-dev-1111"
+    environment                 = "dev"
+    labels = {
+      created_by  = "terraform"
+      environment = "dev"
+      team        = "data-eng"
+    }
+    allowed_persistence_regions = ["us-east4"]
+  },
+  {
+    name                        = "prod-event-streaming-topic"
+    project_id                  = "prj-gcp-prod-1234"
+    environment                 = "prod"
+    labels = {
+      created_by  = "terraform"
+      environment = "prod"
+      team        = "analytics"
+    }
+    allowed_persistence_regions = ["us-east4"]
+  }
+]
